@@ -4,29 +4,56 @@
 <title>SANJAY - NO EXCUSES</title>
 <style>
 body{margin:0;background:#000;color:#fff;font-family:Arial;text-align:center}
-.top{background:#ff0000;padding:10px;font-weight:bold;letter-spacing:2px}
-h1{font-size:60px;margin-top:80px;line-height:1}
+.top{background:#ff0000;padding:10px;font-weight:bold}
+h1{font-size:60px;margin-top:60px;line-height:1}
 h1 span{color:#ff0000;text-shadow:0 0 20px red}
 p{color:#ccc;font-size:20px}
 .btn{background:#ff0000;color:#fff;padding:18px 50px;font-size:22px;font-weight:bold;border:none;border-radius:50px;cursor:pointer;box-shadow:0 0 30px red}
-.btn:hover{background:#fff;color:#000}
-.box{display:flex;justify-content:center;gap:20px;margin-top:50px}
+.box{display:flex;justify-content:center;gap:20px;margin-top:40px;flex-wrap:wrap}
 .card{background:#111;border:1px solid #333;padding:20px;width:200px;border-radius:15px}
 .card h2{color:#ff0000;font-size:35px}
+#formBox{display:none;background:#111;border:2px solid red;padding:25px;width:300px;margin:30px auto;border-radius:15px}
+input{width:90%;padding:12px;margin:8px;border-radius:8px;border:none;font-size:16px}
 </style>
 </head>
 <body>
 <div class="top">⚡ NO EXCUSES - ONLY RESULTS ⚡</div>
 <h1>DON'T QUIT.<br><span>DOMINATE.</span></h1>
-<p>Kamzor log bahana banate hai. Strong log history banate hai.<br>Tum kis side ho?</p>
-<br>
-<button class="btn" onclick="alert('Welcome Champion!')">JOIN NOW →</button>
+<p>𝐓𝐀𝐊𝐄 𝐓𝐈𝐌𝐄 𝐓𝐎 𝐈𝐌𝐏𝐑𝐎𝐕𝐄 𝐁𝐔𝐓 𝐃𝐨𝐧'𝐭 𝐰𝐚𝐬𝐭𝐞 𝐭𝐢𝐦𝐞 𝐭𝐨 𝐩𝐫𝐨𝐯𝐞</p>
+<button class="btn" onclick="document.getElementById('formBox').style.display='block'">JOIN NOW →</button>
+
+<div id="formBox">
+<h2 style="color:#ff0000">JOIN THE TEAM</h2>
+<input id="name" placeholder="Enter your name">
+<input id="phone" placeholder="Mobile Number">
+<br><br>
+<button class="btn" onclick="joinNow()">CONFIRM JOIN ✅</button>
+<p id="msg"></p>
+</div>
+
 <div class="box">
 <div class="card"><h2>100%</h2><p>DEDICATION</p></div>
 <div class="card"><h2>0%</h2><p>EXCUSES</p></div>
 <div class="card"><h2>24/7</h2><p>HUSTLE</p></div>
 </div>
-<br><br>
 <p style="color:#666">© 2026 SANJAY - Built To Win</p>
+
+<script>
+async function joinNow(){
+let name = document.getElementById('name').value;
+let phone = document.getElementById('phone').value;
+if(!name){ alert('Please Enter your name!'); return; }
+document.getElementById('msg').innerText = 'Joining in process... please wait...';
+try{
+let res = await fetch('https://my-first-api-svo6.onrender.com/users', {
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body: JSON.stringify({name: name + ' - ' + phone})
+});
+if(res.ok){ document.getElementById('msg').innerText = '🔥 WELCOME CHAMPION ' + name + '! joining sucessfull!'; }
+else{ document.getElementById('msg').innerText = 'done! note it yur name.'; }
+}catch(e){ document.getElementById('msg').innerText = '✅ Done! Welcome ' + name; }
+}
+</script>
 </body>
 </html>
