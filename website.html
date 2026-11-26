@@ -45,7 +45,7 @@ let phone = document.getElementById('phone').value;
 if(!name){ alert('Please Enter your name!'); return; }
 document.getElementById('msg').innerText = 'Joining in process... please wait...';
 try{
-let res = await fetch('https://my-first-api-5cuo.onrender.com/users', {
+let res = await fetch('https://my-first-api-f5ou.onrender.com/users', {
 method:'POST',
 headers:{'Content-Type':'application/json'},
 body: JSON.stringify({name: name + ' - ' + phone})
